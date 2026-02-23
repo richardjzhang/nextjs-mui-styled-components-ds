@@ -1,0 +1,31 @@
+{
+  "name": "nextjs-styled-mui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/icons-material": "^7.3.8",
+    "@mui/material": "^7.3.8",
+    "next": "^15.5.9",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "styled-components": "^5.3.11"
+  },
+  "devDependencies": {
+    "@types/node": "^25.3.0",
+    "@types/react": "^19.2.14",
+    "@types/styled-components": "^5.1.36",
+    "typescript": "^5.9.3"
+  }
+}
