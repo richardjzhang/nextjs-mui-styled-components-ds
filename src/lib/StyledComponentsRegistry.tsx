@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { useServerInsertedHTML } from "next/navigation";
 import { ServerStyleSheet, StyleSheetManager, ThemeProvider } from "styled-components";
-import scTheme from "@/theme/scTheme";
+import scTheme from "../theme/scTheme";
 
 export default function StyledComponentsRegistry({
   children,

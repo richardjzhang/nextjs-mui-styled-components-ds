@@ -1,31 +1,89 @@
 {
-  "name": "nextjs-styled-mui",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "@richardjzhang/design-system",
+  "version": "0.1.0",
+  "description": "Design system built with styled-components and MUI",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./next": {
+      "import": {
+        "types": "./dist/next.d.ts",
+        "default": "./dist/next.js"
+      },
+      "require": {
+        "types": "./dist/next.d.cts",
+        "default": "./dist/next.cjs"
+      }
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build:app": "next build",
+    "build": "tsup",
+    "build:watch": "tsup --watch",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prepublishOnly": "npm run build",
+    "typecheck": "tsc --project tsconfig.build.json --noEmit"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "design-system",
+    "react",
+    "styled-components",
+    "mui",
+    "components"
+  ],
+  "author": "richardjzhang",
   "license": "ISC",
-  "dependencies": {
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/richardjzhang/nextjs-mui-styled-components-ds.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "peerDependencies": {
+    "@emotion/react": ">=11",
+    "@emotion/styled": ">=11",
+    "@mui/icons-material": ">=7",
+    "@mui/material": ">=7",
+    "react": ">=18",
+    "react-dom": ">=18",
+    "styled-components": ">=5"
+  },
+  "peerDependenciesMeta": {
+    "next": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "@mui/icons-material": "^7.3.8",
     "@mui/material": "^7.3.8",
-    "next": "^15.5.9",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "styled-components": "^5.3.11"
-  },
-  "devDependencies": {
     "@types/node": "^25.3.0",
     "@types/react": "^19.2.14",
     "@types/styled-components": "^5.1.36",
+    "next": "^15.5.9",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "styled-components": "^5.3.11",
+    "tsup": "^8.5.1",
     "typescript": "^5.9.3"
   }
 }

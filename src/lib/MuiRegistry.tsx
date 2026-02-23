@@ -3,7 +3,7 @@
 import React from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-import muiTheme from "@/theme/muiTheme";
+import muiTheme from "../theme/muiTheme";
 
 export default function MuiRegistry({
   children,
