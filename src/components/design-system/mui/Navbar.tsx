@@ -23,39 +23,52 @@ interface NavbarProps {
   title: string;
   items?: NavItem[];
   elevation?: number;
+  variant?: "dark" | "light";
 }
 
 const DRAWER_WIDTH = 280;
 
-export default function Navbar({ title, items = [], elevation = 0 }: NavbarProps) {
+export default function Navbar({ title, items = [], elevation = 0, variant = "dark" }: NavbarProps) {
   const [drawerOpen, setDrawerOpen] = useState(false);
+
+  const isDark = variant === "dark";
 
   return (
     <>
       <AppBar
-        position="static"
+        position="absolute"
         elevation={elevation}
         sx={{
-          borderBottom: elevation === 0 ? 1 : 0,
-          borderColor: "divider",
-          bgcolor: "#FFFFFF",
-          color: "#1A1D23",
+          bgcolor: "transparent",
+          color: isDark ? "#FFFFFF" : "#1A1D23",
+          boxShadow: "none",
+          zIndex: 10,
         }}
       >
-        <Toolbar sx={{ justifyContent: "space-between" }}>
+        <Toolbar
+          sx={{
+            justifyContent: "space-between",
+            px: { xs: 3, md: 6 },
+            py: 1.5,
+          }}
+        >
           <Typography
             variant="h6"
-            component="div"
+            component="a"
+            href="/"
             sx={{
               fontWeight: 700,
               mr: 4,
               letterSpacing: "-0.02em",
+              color: isDark ? "#FFFFFF" : "#1A1D23",
+              textDecoration: "none",
+              fontSize: "1.1rem",
             }}
           >
             {title}
           </Typography>
 
-          <Box sx={{ display: { xs: "none", md: "flex" }, gap: 0.5 }}>
+          <Box sx={{ display: { xs: "none", md: "flex" }, gap: 0.5, alignItems: "center" }}>
             {items.map((item) => (
               <Button
                 key={item.label}
@@ -64,8 +77,10 @@ export default function Navbar({ title, items = [], elevation = 0 }: NavbarProps
                 sx={{
                   textTransform: "none",
                   fontWeight: 500,
-                  color: "#5C6370",
-                  "&:hover": { color: "#1A1D23" },
+                  color: isDark ? "rgba(255,255,255,0.85)" : "#5C6370",
+                  "&:hover": { color: isDark ? "#FFFFFF" : "#1A1D23" },
+                  fontSize: "0.9rem",
+                  px: 2,
                 }}
               >
                 {item.label}
@@ -75,38 +90,59 @@ export default function Navbar({ title, items = [], elevation = 0 }: NavbarProps
 
           <IconButton
             edge="end"
-            color="inherit"
             aria-label="menu"
             onClick={() => setDrawerOpen(true)}
             sx={{
-              display: { md: "none" },
-              border: "1px solid #D4D8DE",
-              borderRadius: "50%",
+              bgcolor: isDark ? "#FFFFFF" : "#1A1D23",
+              color: isDark ? "#1A1D23" : "#FFFFFF",
               width: 44,
               height: 44,
+              "&:hover": {
+                bgcolor: isDark ? "rgba(255,255,255,0.9)" : "rgba(26,29,35,0.9)",
+              },
             }}
           >
-            <MenuIcon />
+            <MenuIcon fontSize="small" />
           </IconButton>
         </Toolbar>
       </AppBar>
 
       <Drawer
-        anchor="left"
+        anchor="right"
         open={drawerOpen}
         onClose={() => setDrawerOpen(false)}
-        sx={{ "& .MuiDrawer-paper": { width: DRAWER_WIDTH } }}
+        sx={{
+          "& .MuiDrawer-paper": {
+            width: DRAWER_WIDTH,
+            bgcolor: "#2B3039",
+            color: "#FFFFFF",
+          },
+        }}
       >
-        <Box sx={{ p: 2 }}>
-          <Typography variant="h6" sx={{ fontWeight: 700 }}>
+        <Box sx={{ p: 3 }}>
+          <Typography variant="h6" sx={{ fontWeight: 700, color: "#FFFFFF" }}>
             {title}
           </Typography>
         </Box>
         <List>
           {items.map((item) => (
             <ListItem key={item.label} disablePadding>
-              <ListItemButton component="a" href={item.href} onClick={() => setDrawerOpen(false)}>
-                <ListItemText primary={item.label} />
+              <ListItemButton
+                component="a"
+                href={item.href}
+                onClick={() => setDrawerOpen(false)}
+                sx={{
+                  px: 3,
+                  py: 1.5,
+                  "&:hover": { bgcolor: "rgba(255,255,255,0.05)" },
+                }}
+              >
+                <ListItemText
+                  primary={item.label}
+                  primaryTypographyProps={{
+                    sx: { color: "rgba(255,255,255,0.85)", fontWeight: 500 },
+                  }}
+                />
               </ListItemButton>
             </ListItem>
           ))}

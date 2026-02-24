@@ -6,9 +6,9 @@ import Typography from "@mui/material/Typography";
 const portfolioTypes = [
   {
     icon: (
-      <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
-        <rect x="8" y="20" width="24" height="24" stroke="#7B8FA1" strokeWidth="2" fill="none" />
-        <rect x="20" y="8" width="16" height="16" stroke="#7B8FA1" strokeWidth="2" fill="none" />
+      <svg width="48" height="48" viewBox="0 0 64 64" fill="none">
+        <rect x="8" y="20" width="24" height="24" stroke="#7B8FA1" strokeWidth="1.5" fill="none" />
+        <rect x="20" y="8" width="16" height="16" stroke="#7B8FA1" strokeWidth="1.5" fill="none" />
       </svg>
     ),
     title: "Built & owned ventures",
@@ -17,19 +17,20 @@ const portfolioTypes = [
   },
   {
     icon: (
-      <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
-        <rect x="8" y="8" width="20" height="20" stroke="#7B8FA1" strokeWidth="2" fill="none" />
-        <rect x="24" y="24" width="20" height="20" stroke="#7B8FA1" strokeWidth="2" fill="none" />
+      <svg width="48" height="48" viewBox="0 0 64 64" fill="none">
+        <rect x="8" y="8" width="20" height="20" stroke="#7B8FA1" strokeWidth="1.5" fill="none" />
+        <rect x="24" y="24" width="20" height="20" stroke="#7B8FA1" strokeWidth="1.5" fill="none" />
+        <circle cx="44" cy="12" r="6" stroke="#7B8FA1" strokeWidth="1.5" fill="none" />
       </svg>
     ),
     title: "Early-stage investments",
     description:
-      "Pre-Series B startups with a clear benefit to CommBank, and that demonstrate readiness for strategic partnership commitments.",
+      "Pre-Series B startups with a clear benefit to CommBank, and that demonstrate readiness for strategic partnership commitments, e.g. distribution access.",
   },
   {
     icon: (
-      <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
-        <path d="M32 8L32 56M8 32L56 32M15 15L49 49M49 15L15 49" stroke="#7B8FA1" strokeWidth="2" />
+      <svg width="48" height="48" viewBox="0 0 64 64" fill="none">
+        <path d="M32 8L32 56M8 32L56 32M15 15L49 49M49 15L15 49" stroke="#7B8FA1" strokeWidth="1.5" />
       </svg>
     ),
     title: "Xccelerate investments",
@@ -44,51 +45,55 @@ export default function MuiCardSection() {
       sx={{
         bgcolor: "#2B3039",
         px: { xs: 3, md: 6 },
-        py: { xs: 6, md: 8 },
+        py: { xs: 8, md: 10 },
       }}
     >
-      <Typography
-        variant="h5"
-        sx={{
-          color: "#FFFFFF",
-          fontWeight: 600,
-          mb: 6,
-        }}
-      >
-        Our portfolio comprises:
-      </Typography>
-      <Box
-        sx={{
-          display: "grid",
-          gridTemplateColumns: { xs: "1fr", md: "repeat(3, 1fr)" },
-          gap: 4,
-        }}
-      >
-        {portfolioTypes.map((item) => (
-          <Box key={item.title}>
-            <Box sx={{ mb: 3 }}>{item.icon}</Box>
-            <Typography
-              variant="subtitle1"
-              sx={{
-                color: "#FFFFFF",
-                fontWeight: 600,
-                mb: 1.5,
-                fontSize: "1.1rem",
-              }}
-            >
-              {item.title}
-            </Typography>
-            <Typography
-              variant="body2"
-              sx={{
-                color: "#7B8FA1",
-                lineHeight: 1.7,
-              }}
-            >
-              {item.description}
-            </Typography>
-          </Box>
-        ))}
+      <Box sx={{ maxWidth: 1200, mx: "auto" }}>
+        <Typography
+          variant="h5"
+          sx={{
+            color: "#FFFFFF",
+            fontWeight: 600,
+            mb: 8,
+            fontSize: { xs: "1.25rem", md: "1.5rem" },
+          }}
+        >
+          Our portfolio comprises:
+        </Typography>
+        <Box
+          sx={{
+            display: "grid",
+            gridTemplateColumns: { xs: "1fr", md: "repeat(3, 1fr)" },
+            gap: { xs: 5, md: 6 },
+          }}
+        >
+          {portfolioTypes.map((item) => (
+            <Box key={item.title}>
+              <Box sx={{ mb: 3 }}>{item.icon}</Box>
+              <Typography
+                variant="subtitle1"
+                sx={{
+                  color: "#FFFFFF",
+                  fontWeight: 700,
+                  mb: 1.5,
+                  fontSize: "1rem",
+                }}
+              >
+                {item.title}
+              </Typography>
+              <Typography
+                variant="body2"
+                sx={{
+                  color: "#7B8FA1",
+                  lineHeight: 1.7,
+                  fontSize: "0.9rem",
+                }}
+              >
+                {item.description}
+              </Typography>
+            </Box>
+          ))}
+        </Box>
       </Box>
     </Box>
   );
