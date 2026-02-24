@@ -35,30 +35,59 @@ export default function Navbar({ title, items = [], elevation = 0 }: NavbarProps
       <AppBar
         position="static"
         elevation={elevation}
-        sx={{ borderBottom: elevation === 0 ? 1 : 0, borderColor: "divider" }}
+        sx={{
+          borderBottom: elevation === 0 ? 1 : 0,
+          borderColor: "divider",
+          bgcolor: "#FFFFFF",
+          color: "#1A1D23",
+        }}
       >
-        <Toolbar>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            onClick={() => setDrawerOpen(true)}
-            sx={{ mr: 2, display: { md: "none" } }}
+        <Toolbar sx={{ justifyContent: "space-between" }}>
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{
+              fontWeight: 700,
+              mr: 4,
+              letterSpacing: "-0.02em",
+            }}
           >
-            <MenuIcon />
-          </IconButton>
-
-          <Typography variant="h6" component="div" sx={{ fontWeight: 700, mr: 4 }}>
             {title}
           </Typography>
 
-          <Box sx={{ display: { xs: "none", md: "flex" }, gap: 1, flexGrow: 1 }}>
+          <Box sx={{ display: { xs: "none", md: "flex" }, gap: 0.5 }}>
             {items.map((item) => (
-              <Button key={item.label} color="inherit" href={item.href} sx={{ textTransform: "none" }}>
+              <Button
+                key={item.label}
+                color="inherit"
+                href={item.href}
+                sx={{
+                  textTransform: "none",
+                  fontWeight: 500,
+                  color: "#5C6370",
+                  "&:hover": { color: "#1A1D23" },
+                }}
+              >
                 {item.label}
               </Button>
             ))}
           </Box>
+
+          <IconButton
+            edge="end"
+            color="inherit"
+            aria-label="menu"
+            onClick={() => setDrawerOpen(true)}
+            sx={{
+              display: { md: "none" },
+              border: "1px solid #D4D8DE",
+              borderRadius: "50%",
+              width: 44,
+              height: 44,
+            }}
+          >
+            <MenuIcon />
+          </IconButton>
         </Toolbar>
       </AppBar>
 

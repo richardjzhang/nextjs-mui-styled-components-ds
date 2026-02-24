@@ -48,17 +48,16 @@ const variantStyles = {
   `,
   outline: css`
     background: transparent;
-    color: ${({ theme }: { theme: SCTheme }) => theme.colors.primary};
-    border: 2px solid ${({ theme }: { theme: SCTheme }) => theme.colors.primary};
+    color: ${({ theme }: { theme: SCTheme }) => theme.colors.text};
+    border: 2px solid ${({ theme }: { theme: SCTheme }) => theme.colors.border};
 
     &:hover:not(:disabled) {
-      background: ${({ theme }: { theme: SCTheme }) => theme.colors.primary};
-      color: ${({ theme }: { theme: SCTheme }) => theme.colors.white};
+      border-color: ${({ theme }: { theme: SCTheme }) => theme.colors.text};
     }
   `,
   ghost: css`
     background: transparent;
-    color: ${({ theme }: { theme: SCTheme }) => theme.colors.primary};
+    color: ${({ theme }: { theme: SCTheme }) => theme.colors.text};
     border: 2px solid transparent;
 
     &:hover:not(:disabled) {

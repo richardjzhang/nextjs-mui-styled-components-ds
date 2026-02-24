@@ -1,28 +1,33 @@
 const scTheme = {
   colors: {
-    primary: "#1976d2",
-    primaryLight: "#4791db",
-    primaryDark: "#115293",
-    secondary: "#dc004e",
-    secondaryLight: "#e33371",
-    secondaryDark: "#9a0036",
+    // x15ventures brand palette
+    primary: "#FF0080",        // Hot pink CTA
+    primaryLight: "#FF3399",
+    primaryDark: "#D9006C",
+    secondary: "#2B3039",      // Dark charcoal
+    secondaryLight: "#343A44",
+    secondaryDark: "#1A1D23",
     success: "#2e7d32",
     successLight: "#4caf50",
     warning: "#ed6c02",
     warningLight: "#ff9800",
     error: "#d32f2f",
     errorLight: "#ef5350",
-    info: "#0288d1",
-    infoLight: "#03a9f4",
-    background: "#f5f5f5",
-    surface: "#ffffff",
-    surfaceHover: "#f0f0f0",
-    border: "#e0e0e0",
-    borderLight: "#eeeeee",
-    text: "#333333",
-    textSecondary: "#666666",
-    textDisabled: "#9e9e9e",
-    white: "#ffffff",
+    info: "#7B8FA1",           // Slate blue accent
+    infoLight: "#99ABB8",
+    background: "#F0F2F5",     // Light gray
+    surface: "#FFFFFF",
+    surfaceHover: "#E8EAEE",
+    border: "#D4D8DE",
+    borderLight: "#E8EAEE",
+    text: "#1A1D23",           // Near-black
+    textSecondary: "#5C6370",
+    textDisabled: "#9DA3AE",
+    textOnDark: "#7B8FA1",     // Muted text on dark bg
+    white: "#FFFFFF",
+    dark: "#2B3039",           // Dark section bg
+    darkLight: "#343A44",      // Slightly lighter dark
+    darkLighter: "#3E444E",    // Card/hover on dark
   },
   spacing: {
     xs: "4px",
@@ -40,6 +45,7 @@ const scTheme = {
     xl: "1.25rem",
     xxl: "1.5rem",
     display: "2rem",
+    hero: "3.5rem",
   },
   fontWeight: {
     normal: 400,
@@ -47,9 +53,9 @@ const scTheme = {
     semibold: 600,
     bold: 700,
   },
-  borderRadius: "8px",
-  borderRadiusSm: "4px",
-  borderRadiusLg: "12px",
+  borderRadius: "4px",
+  borderRadiusSm: "2px",
+  borderRadiusLg: "8px",
   borderRadiusFull: "9999px",
   shadows: {
     sm: "0 1px 2px rgba(0, 0, 0, 0.05)",
