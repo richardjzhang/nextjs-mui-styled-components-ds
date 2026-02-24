@@ -75,10 +75,17 @@ All components are exported from the package root:
 
 ```tsx
 import {
+  // Styled Components (visual primitives)
   Button, Avatar, Badge, StatCard, Skeleton, Divider,
   SectionHeader, Chip, VentureCard, QuoteBlock, IconCard,
-  CTABanner, ValueCard, Alert, Navbar, ConfirmDialog,
-  TextInput, DataTable, TabPanel,
+  CTABanner, ValueCard,
+
+  // MUI Components (interactive / accessible)
+  Alert, Navbar, ConfirmDialog, TextInput, DataTable, TabPanel,
+
+  // Page-section Components (composed page sections)
+  StyledHero, StyledFooter, MissionSection, CorporateSection,
+  MuiCardSection, VenturesList, SpaceBetween, WorkAtX15,
 } from "@richardjzhang/design-system";
 ```
 
@@ -899,6 +906,246 @@ import { Navbar } from "@richardjzhang/design-system";
 
 ---
 
+## Page-section Components (composed page sections)
+
+These are higher-level, pre-composed page sections built with Styled Components and MUI. They combine multiple primitives into full-width layout blocks ready to drop into a page. All are `"use client"` components.
+
+---
+
+### StyledHero
+
+Full-height hero section with a dark background, dot-pattern overlay, highlight-style title block, primary CTA button, and large watermark text. Designed as the landing section of a page.
+
+#### Props
+
+None. This is a self-contained section with no configurable props.
+
+#### Usage
+
+```tsx
+import { StyledHero } from "@richardjzhang/design-system";
+
+<StyledHero />
+```
+
+#### Visual details
+
+- Dark (`#2B3039`) background with a subtle dot-pattern overlay
+- Title text uses a white highlight box (`box-decoration-break: clone`) for the text "We're a venture scaler powered by CommBank"
+- Primary pink CTA button ("Who are we?") scrolls to `#who-we-are`
+- Large watermark text "x15ventures" in a slightly lighter dark shade at the bottom
+- Responsive: reduces padding on mobile, disables `min-height: 100vh`
+
+---
+
+### StyledFooter
+
+Dark-themed page footer with three-column navigation, social media links (LinkedIn, Instagram), an acknowledgement of country, and a large "x15ventures" watermark.
+
+#### Props
+
+None. This is a self-contained section with no configurable props.
+
+#### Usage
+
+```tsx
+import { StyledFooter } from "@richardjzhang/design-system";
+
+<StyledFooter />
+```
+
+#### Visual details
+
+- Dark (`#2B3039`) background
+- Three columns of navigation links: Home/About/Portfolio, People/Jobs/Security, Contact/Privacy Policy/Legal Terms
+- Right column: social media prompt + LinkedIn and Instagram icon buttons with circular borders
+- Acknowledgement of Country text at the bottom (muted, 0.6 opacity)
+- Large watermark "x15ventures" text below the main content
+- All links use `textOnDark` colour with hover transition to white
+
+---
+
+### MissionSection
+
+Two-part content section: a mission statement heading at the top, followed by a "made to scale" section with text on the left and an image placeholder on the right. Includes a "Working at x15" outline CTA link.
+
+#### Props
+
+None. This is a self-contained section with no configurable props.
+
+#### Usage
+
+```tsx
+import { MissionSection } from "@richardjzhang/design-system";
+
+<MissionSection />
+```
+
+#### Visual details
+
+- White background, max-width 1200px centered
+- ID `who-we-are` for in-page navigation
+- Top: large bold mission statement text
+- Bottom: two-column flex layout (text + image placeholder) with a "Working at x15" outline button
+- Responsive: stacks vertically on mobile
+
+---
+
+### CorporateSection
+
+Two-column content block with a text column ("We exist in the space between corporate and startup") and an image placeholder. Includes a "More about us" outline CTA link.
+
+#### Props
+
+None. This is a self-contained section with no configurable props.
+
+#### Usage
+
+```tsx
+import { CorporateSection } from "@richardjzhang/design-system";
+
+<CorporateSection />
+```
+
+#### Visual details
+
+- White background, max-width 1200px centered
+- Two-column flex layout (text + image placeholder) with 64px gap
+- "More about us" outline CTA link
+- Responsive: stacks vertically on mobile
+
+---
+
+### MuiCardSection
+
+Dark three-column grid section showcasing portfolio types (Built & owned, Early-stage, Xccelerate). Each card has an SVG icon, title, and description. Built with MUI `Box` and `Typography`.
+
+#### Props
+
+None. This is a self-contained section with no configurable props.
+
+#### Usage
+
+```tsx
+import { MuiCardSection } from "@richardjzhang/design-system";
+
+<MuiCardSection />
+```
+
+#### Visual details
+
+- Dark (`#2B3039`) background, full-width
+- "Our portfolio comprises:" heading in white
+- 3-column responsive grid (stacks to 1 column on mobile)
+- Each card: SVG icon (slate blue strokes), white title, slate-blue description text
+
+---
+
+### VenturesList
+
+Configurable dark section that displays venture names in large typographic rows. Each row shows a venture name in a large bold font with a year label. Accepts props for customisation.
+
+#### Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `title` | `string` | -- | Section heading (required) |
+| `ventures` | `Venture[]` | -- | Array of venture objects (required) |
+
+**`Venture` shape:**
+
+```ts
+interface Venture {
+  name: string;      // Venture name (displayed large)
+  year: string;      // Year founded
+  href?: string;     // Optional link URL
+}
+```
+
+#### Usage
+
+```tsx
+import { VenturesList } from "@richardjzhang/design-system";
+
+<VenturesList
+  title="Built and owned"
+  ventures={[
+    { name: "Home-in", year: "2020" },
+    { name: "Unloan", year: "2022" },
+    { name: "Kit", year: "2022" },
+    { name: "Truyu", year: "2024", href: "/ventures/truyu" },
+  ]}
+/>
+
+<VenturesList
+  title="Xccelerate investments"
+  ventures={[
+    { name: "Paytron", year: "2022" },
+    { name: "Gable", year: "2024" },
+  ]}
+/>
+```
+
+#### Visual details
+
+- Dark (`#2B3039`) background, full-width
+- Each venture row is a clickable `<a>` element with large bold text (`clamp(2.5rem, 5vw, 4.5rem)`) in a slightly lighter dark colour, year label in muted text with 0.6 opacity
+- Hover reduces opacity to 0.7
+
+---
+
+### SpaceBetween
+
+Content/blog section with a "The Space Between" branded header and a 3-column article card grid. Displays article cards with type, title, author, and date.
+
+#### Props
+
+None. This is a self-contained section with hardcoded sample articles.
+
+#### Usage
+
+```tsx
+import { SpaceBetween } from "@richardjzhang/design-system";
+
+<SpaceBetween />
+```
+
+#### Visual details
+
+- Light grey (`#F0F2F5`) background
+- Header: "The Space" / "Between" with a primary-pink underline on "Between", plus a description paragraph
+- 3-column responsive article grid (2-col on tablet, 1-col on mobile)
+- Each article card: white background, hover shadow, type label, title, author, and date
+- Article data is currently hardcoded (3 media articles)
+
+---
+
+### WorkAtX15
+
+Dark CTA section with a heading, body text, and an arrow-link CTA. Designed as a recruitment/careers call-to-action block.
+
+#### Props
+
+None. This is a self-contained section with no configurable props.
+
+#### Usage
+
+```tsx
+import { WorkAtX15 } from "@richardjzhang/design-system";
+
+<WorkAtX15 />
+```
+
+#### Visual details
+
+- Dark (`#2B3039`) background, full-width
+- Heading: "Find out what it's like to work at x15"
+- Body: description of the team culture
+- "Life at x15" link with right-arrow SVG icon, hover reduces opacity
+- Max-width 600px on heading and body text
+
+---
+
 ## Project structure
 
 ```
@@ -927,6 +1174,15 @@ src/
         TextInput.tsx
         DataTable.tsx
         TabPanel.tsx
+    StyledHero.tsx           # Full-height hero section
+    StyledFooter.tsx         # Dark footer with nav + socials
+    MissionSection.tsx       # Mission statement + scale block
+    CorporateSection.tsx     # Two-column corporate text + image
+    MuiCardSection.tsx       # Dark 3-column portfolio types (MUI)
+    VenturesList.tsx         # Large-type venture list (props-driven)
+    SpaceBetween.tsx         # Article cards grid section
+    WorkAtX15.tsx            # Dark recruitment CTA section
+    HomeBody.tsx             # Documentation page composition (not exported)
   theme/
     scTheme.ts              # Styled Components theme tokens
     muiTheme.ts             # MUI createTheme configuration
@@ -959,10 +1215,15 @@ npm run typecheck
 
 If you are an AI tool (v0, Cursor, Copilot, etc.) generating code that uses this design system, follow these rules:
 
-1. **Always import from `@/components/design-system`** (or the published package name).
+1. **Always import from `@/components/design-system`** (or the published package name). All 27 components are exported from the barrel file.
 2. **Every page must be wrapped** in `StyledComponentsRegistry` + `MuiRegistry` (already done in the root layout).
 3. **All components are client components** (`"use client"`) -- they can be imported into server components but will render on the client.
 4. **Use the theme tokens** from `scTheme` for custom styled-components rather than hardcoding colours.
 5. **DataTable row types** must include `[key: string]: unknown` to satisfy the generic constraint.
 6. **Button `outline` and `ghost` variants** use `currentColor` -- they inherit text colour from their parent, so they work on both light and dark backgrounds automatically.
 7. **Prefer the design system components** over raw HTML or MUI primitives for consistency.
+8. **Page-section components** (`StyledHero`, `StyledFooter`, `MissionSection`, `CorporateSection`, `MuiCardSection`, `VenturesList`, `SpaceBetween`, `WorkAtX15`) are full-width composed sections. Most are self-contained with no props. `VenturesList` is the only one that accepts props (`title` and `ventures` array).
+9. **Component categories:**
+   - **Styled Components (13):** Button, Avatar, Badge, StatCard, Skeleton, Divider, SectionHeader, Chip, VentureCard, QuoteBlock, IconCard, CTABanner, ValueCard
+   - **MUI Components (6):** Alert, Navbar, ConfirmDialog, TextInput, DataTable, TabPanel
+   - **Page-section Components (8):** StyledHero, StyledFooter, MissionSection, CorporateSection, MuiCardSection, VenturesList, SpaceBetween, WorkAtX15

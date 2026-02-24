@@ -20,3 +20,13 @@ export { default as ConfirmDialog } from "./mui/ConfirmDialog";
 export { default as TextInput } from "./mui/TextInput";
 export { default as DataTable } from "./mui/DataTable";
 export { default as TabPanel } from "./mui/TabPanel";
+
+// Page-section Components (composed sections for page layouts)
+export { default as StyledHero } from "../StyledHero";
+export { default as StyledFooter } from "../StyledFooter";
+export { default as MissionSection } from "../MissionSection";
+export { default as CorporateSection } from "../CorporateSection";
+export { default as MuiCardSection } from "../MuiCardSection";
+export { default as VenturesList } from "../VenturesList";
+export { default as SpaceBetween } from "../SpaceBetween";
+export { default as WorkAtX15 } from "../WorkAtX15";
