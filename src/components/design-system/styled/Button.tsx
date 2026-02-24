@@ -48,20 +48,22 @@ const variantStyles = {
   `,
   outline: css`
     background: transparent;
-    color: ${({ theme }: { theme: SCTheme }) => theme.colors.text};
-    border: 2px solid ${({ theme }: { theme: SCTheme }) => theme.colors.border};
+    color: currentColor;
+    border: 2px solid currentColor;
+    opacity: 0.7;
 
     &:hover:not(:disabled) {
-      border-color: ${({ theme }: { theme: SCTheme }) => theme.colors.text};
+      opacity: 1;
     }
   `,
   ghost: css`
     background: transparent;
-    color: ${({ theme }: { theme: SCTheme }) => theme.colors.text};
+    color: currentColor;
     border: 2px solid transparent;
+    opacity: 0.7;
 
     &:hover:not(:disabled) {
-      background: ${({ theme }: { theme: SCTheme }) => theme.colors.surfaceHover};
+      opacity: 1;
     }
   `,
 };
