@@ -1,4 +1,6 @@
-"use client";
+import { writeFileSync, mkdirSync } from 'fs';
+
+const content = `"use client";
 
 import { useState } from "react";
 import Container from "@mui/material/Container";
@@ -146,7 +148,7 @@ export default function DesignSystemPage() {
           <Typography sx={{ fontSize: "2rem", fontWeight: 700, lineHeight: 1.2, color: "#1A1D23" }}>{"Display 2rem / 700"}</Typography>
           <Typography sx={{ fontSize: "1.5rem", fontWeight: 700, lineHeight: 1.3, color: "#1A1D23" }}>{"Heading 1.5rem / 700"}</Typography>
           <Typography sx={{ fontSize: "1.125rem", fontWeight: 600, lineHeight: 1.4, color: "#1A1D23" }}>{"Subheading 1.125rem / 600"}</Typography>
-          <Typography sx={{ fontSize: "1rem", fontWeight: 400, lineHeight: 1.6, color: "#5C6370" }}>{"Body 1rem / 400 \u2013 We build, buy, and invest in startups."}</Typography>
+          <Typography sx={{ fontSize: "1rem", fontWeight: 400, lineHeight: 1.6, color: "#5C6370" }}>{"Body 1rem / 400 \\u2013 We build, buy, and invest in startups."}</Typography>
           <Typography sx={{ fontSize: "0.75rem", fontWeight: 500, lineHeight: 1.5, color: "#7B8FA1", textTransform: "uppercase", letterSpacing: "0.05em" }}>{"Overline 0.75rem / 500"}</Typography>
         </Box>
 
@@ -224,15 +226,15 @@ export default function DesignSystemPage() {
         <DSTitle id="section-header">Section Header</DSTitle>
         <DSCaption>{"The primary heading pattern used across all x15 page sections."}</DSCaption>
         <Box sx={{ p: 4, bgcolor: "#FFFFFF", border: "1px solid #D4D8DE", borderRadius: 1, mb: 2 }}>
-          <SectionHeader eyebrow="portfolio" title="Our ventures" subtitle={"We\u2019re helping CommBank reimagine what it means to be a bank."} variant="light" />
+          <SectionHeader eyebrow="portfolio" title="Our ventures" subtitle={"We\\u2019re helping CommBank reimagine what it means to be a bank."} variant="light" />
         </Box>
         <Box sx={{ p: 4, bgcolor: "#2B3039", borderRadius: 1 }}>
-          <SectionHeader eyebrow="about" title={"We\u2019re made to scale."} subtitle="To move and grow, learn and thrive." variant="dark" />
+          <SectionHeader eyebrow="about" title={"We\\u2019re made to scale."} subtitle="To move and grow, learn and thrive." variant="dark" />
         </Box>
 
         <DSTitle id="quote-block">Quote Block</DSTitle>
         <DSCaption>{"Testimonial / executive quote component as seen on the x15 portfolio page."}</DSCaption>
-        <QuoteBlock quote={"There\u2019s a blurring of industry lines happening everywhere. To meet customer needs and expectations, we have to look more broadly."} author="Stuart Munro" role="Group Executive Group Strategy, CommBank" variant="light" />
+        <QuoteBlock quote={"There\\u2019s a blurring of industry lines happening everywhere. To meet customer needs and expectations, we have to look more broadly."} author="Stuart Munro" role="Group Executive Group Strategy, CommBank" variant="light" />
         <Box sx={{ mt: 2 }}>
           <QuoteBlock quote={"We operate in a space between corporate and startup, where people are able to explore, innovate and create without fear."} author="Toby Norton-Smith" role="Managing Director, x15ventures" variant="dark" />
         </Box>
@@ -242,7 +244,7 @@ export default function DesignSystemPage() {
         <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "repeat(3, 1fr)" }, gap: 3 }}>
           <VentureCard name="Home-in" year="2020" category="Home" description="Home-in simplifies the complex process of buying a home." brandColor="#1A6B54" />
           <VentureCard name="Kit" year="2022" category="Everyday" description="Kit is a pocket money app helping improve financial capability." brandColor="#2DB87D" />
-          <VentureCard name="Doshii" year="2021" category="Business" description={"Doshii gets hospitality apps talking to a venue\u2019s POS platform."} brandColor="#3B4FBF" />
+          <VentureCard name="Doshii" year="2021" category="Business" description={"Doshii gets hospitality apps talking to a venue\\u2019s POS platform."} brandColor="#3B4FBF" />
         </Box>
         <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "repeat(2, 1fr)" }, gap: 3, mt: 3 }}>
           <VentureCard name="Unloan" year="2022" category="Home" description="A new kind of home loan with one great rate." brandColor="#FF6B35" />
@@ -262,9 +264,9 @@ export default function DesignSystemPage() {
         <DSTitle id="value-card">Value Card</DSTitle>
         <DSCaption>{"Used for the team values section."}</DSCaption>
         <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "repeat(3, 1fr)" }, gap: 2 }}>
-          <ValueCard title="Tune in" description={"We\u2019re aware, attuned, and always act to help others."} variant="light" />
-          <ValueCard title="Lead with grit" description={"We\u2019re galvanisers, peacemakers, thinkers and doers."} variant="light" />
-          <ValueCard title="Find a way" description={"We\u2019re tenacious, resilient and do what\u2019s right."} variant="light" />
+          <ValueCard title="Tune in" description={"We\\u2019re aware, attuned, and always act to help others."} variant="light" />
+          <ValueCard title="Lead with grit" description={"We\\u2019re galvanisers, peacemakers, thinkers and doers."} variant="light" />
+          <ValueCard title="Find a way" description={"We\\u2019re tenacious, resilient and do what\\u2019s right."} variant="light" />
         </Box>
 
         <DSTitle id="cta-banner">CTA Banner</DSTitle>
@@ -350,4 +352,20 @@ export default function DesignSystemPage() {
       </Container>
     </>
   );
+}
+`;
+
+const targets = [
+  '/vercel/share/v0-next-shadcn/src/app/design-system/page.tsx',
+  '/vercel/share/v0-project/src/app/design-system/page.tsx',
+];
+
+for (const target of targets) {
+  try {
+    mkdirSync(target.replace('/page.tsx', ''), { recursive: true });
+    writeFileSync(target, content);
+    console.log('Written:', target);
+  } catch (e) {
+    console.error('Error writing', target, e.message);
+  }
 }

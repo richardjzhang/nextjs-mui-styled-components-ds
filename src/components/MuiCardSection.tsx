@@ -1,61 +1,99 @@
 "use client";
 
 import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
-import CodeIcon from "@mui/icons-material/Code";
-import BrushIcon from "@mui/icons-material/Brush";
 
-const cards = [
+const portfolioTypes = [
   {
-    icon: <RocketLaunchIcon fontSize="large" color="primary" />,
-    title: "Next.js 15",
-    description: "App Router with React Server Components and streaming SSR.",
+    icon: (
+      <svg width="48" height="48" viewBox="0 0 64 64" fill="none">
+        <rect x="8" y="20" width="24" height="24" stroke="#7B8FA1" strokeWidth="1.5" fill="none" />
+        <rect x="20" y="8" width="16" height="16" stroke="#7B8FA1" strokeWidth="1.5" fill="none" />
+      </svg>
+    ),
+    title: "Built & owned ventures",
+    description:
+      "Wholly-owned startups we have either built and launched, or acquired.",
   },
   {
-    icon: <CodeIcon fontSize="large" color="primary" />,
-    title: "Styled Components",
-    description: "Custom components with tagged template literals and theming.",
+    icon: (
+      <svg width="48" height="48" viewBox="0 0 64 64" fill="none">
+        <rect x="8" y="8" width="20" height="20" stroke="#7B8FA1" strokeWidth="1.5" fill="none" />
+        <rect x="24" y="24" width="20" height="20" stroke="#7B8FA1" strokeWidth="1.5" fill="none" />
+        <circle cx="44" cy="12" r="6" stroke="#7B8FA1" strokeWidth="1.5" fill="none" />
+      </svg>
+    ),
+    title: "Early-stage investments",
+    description:
+      "Pre-Series B startups with a clear benefit to CommBank, and that demonstrate readiness for strategic partnership commitments, e.g. distribution access.",
   },
   {
-    icon: <BrushIcon fontSize="large" color="primary" />,
-    title: "Material UI",
-    description: "Pre-built components powered by Emotion under the hood.",
+    icon: (
+      <svg width="48" height="48" viewBox="0 0 64 64" fill="none">
+        <path d="M32 8L32 56M8 32L56 32M15 15L49 49M49 15L15 49" stroke="#7B8FA1" strokeWidth="1.5" />
+      </svg>
+    ),
+    title: "Xccelerate investments",
+    description:
+      "Pre-Series A startups with a minimum viable product (MVP) and potential pathway to partnership with CommBank in the future.",
   },
 ];
 
 export default function MuiCardSection() {
   return (
-    <Box sx={{ mb: 4 }}>
-      <Typography variant="h4" gutterBottom sx={{ textAlign: "center", mb: 3 }}>
-        Material UI Section
-      </Typography>
-      <Box
-        sx={{
-          display: "grid",
-          gridTemplateColumns: { xs: "1fr", md: "repeat(3, 1fr)" },
-          gap: 3,
-        }}
-      >
-        {cards.map((card) => (
-          <Card key={card.title} variant="outlined">
-            <CardContent sx={{ textAlign: "center", py: 4 }}>
-              {card.icon}
-              <Typography variant="h6" sx={{ mt: 2, mb: 1 }}>
-                {card.title}
+    <Box
+      sx={{
+        bgcolor: "#2B3039",
+        px: { xs: 3, md: 6 },
+        py: { xs: 8, md: 10 },
+      }}
+    >
+      <Box sx={{ maxWidth: 1200, mx: "auto" }}>
+        <Typography
+          variant="h5"
+          sx={{
+            color: "#FFFFFF",
+            fontWeight: 600,
+            mb: 8,
+            fontSize: { xs: "1.25rem", md: "1.5rem" },
+          }}
+        >
+          Our portfolio comprises:
+        </Typography>
+        <Box
+          sx={{
+            display: "grid",
+            gridTemplateColumns: { xs: "1fr", md: "repeat(3, 1fr)" },
+            gap: { xs: 5, md: 6 },
+          }}
+        >
+          {portfolioTypes.map((item) => (
+            <Box key={item.title}>
+              <Box sx={{ mb: 3 }}>{item.icon}</Box>
+              <Typography
+                variant="subtitle1"
+                sx={{
+                  color: "#FFFFFF",
+                  fontWeight: 700,
+                  mb: 1.5,
+                  fontSize: "1rem",
+                }}
+              >
+                {item.title}
               </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {card.description}
+              <Typography
+                variant="body2"
+                sx={{
+                  color: "#7B8FA1",
+                  lineHeight: 1.7,
+                  fontSize: "0.9rem",
+                }}
+              >
+                {item.description}
               </Typography>
-              <Button variant="contained" size="small" sx={{ mt: 2 }}>
-                Learn More
-              </Button>
-            </CardContent>
-          </Card>
-        ))}
+            </Box>
+          ))}
+        </Box>
       </Box>
     </Box>
   );

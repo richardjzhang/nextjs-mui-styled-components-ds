@@ -37,7 +37,7 @@ const AvatarImage = styled.img`
 `;
 
 function stringToColor(str: string): string {
-  const colors = ["#1976d2", "#dc004e", "#2e7d32", "#ed6c02", "#9c27b0", "#00695c"];
+  const colors = ["#FF0080", "#2B3039", "#7B8FA1", "#343A44", "#D9006C"];
   let hash = 0;
   for (let i = 0; i < str.length; i++) {
     hash = str.charCodeAt(i) + ((hash << 5) - hash);
