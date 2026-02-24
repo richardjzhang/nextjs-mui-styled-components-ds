@@ -38,7 +38,7 @@ const SpL = styled.div`text-align:center;`;
 const SpN = styled.div`font-size:0.7rem;font-weight:600;color:${({ theme }: { theme: SCTheme }) => theme.colors.text};margin-top:6px;`;
 const SpV = styled.div`font-size:0.65rem;color:${({ theme }: { theme: SCTheme }) => theme.colors.textSecondary};`;
 
-interface VR{id:string;name:string;year:string;type:string;status:string}
+interface VR{[key:string]:unknown;id:string;name:string;year:string;type:string;status:string}
 const TCOLS=[{key:"name" as const,label:"Venture"},{key:"year" as const,label:"Year"},{key:"type" as const,label:"Type"},{key:"status" as const,label:"Status",render:(v:unknown)=>{const s=String(v);const c=s==="Active"?"#2e7d32":s==="In Pilot"?"#ed6c02":"#7B8FA1";return <span style={{color:c,fontWeight:600,fontSize:"0.85rem"}}>{s}</span>}}];
 const TDATA:VR[]=[{id:"1",name:"Home-in",year:"2020",type:"Built & owned",status:"Active"},{id:"2",name:"Unloan",year:"2022",type:"Built & owned",status:"Active"},{id:"3",name:"Truyu",year:"2024",type:"Built & owned",status:"In Pilot"},{id:"4",name:"Payble",year:"2021",type:"Early-stage",status:"Active"},{id:"5",name:"Paytron",year:"2022",type:"Xccelerate",status:"Active"},{id:"6",name:"Gable",year:"2024",type:"Xccelerate",status:"Active"}];
 const BI=<svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="6" y="14" width="18" height="18" stroke="currentColor" strokeWidth="2" fill="none"/><rect x="16" y="6" width="12" height="12" stroke="currentColor" strokeWidth="2" fill="none"/></svg>;
